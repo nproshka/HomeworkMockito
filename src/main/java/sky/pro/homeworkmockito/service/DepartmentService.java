@@ -35,7 +35,7 @@ public class DepartmentService {
         double salarySum = 0.0;
         for (Map.Entry<Integer, Employee> entry : employeeService.getEmployees().entrySet()) {
             if (entry.getValue().getDept() == dept) {
-                salarySum = employeeService.getEmployees().values().stream().mapToDouble(Employee::getSalary).sum();
+                salarySum = salarySum + entry.getValue().getSalary();
             }
         }
         return salarySum;
@@ -58,7 +58,7 @@ public class DepartmentService {
         }
         double minSalary = Double.MAX_VALUE;
         for (Map.Entry<Integer, Employee> entry : employeeService.getEmployees().entrySet()) {
-            if (entry.getValue().getSalary() > minSalary && entry.getValue().getDept() == dept) {
+            if (entry.getValue().getSalary() < minSalary && entry.getValue().getDept() == dept) {
                 minSalary = entry.getValue().getSalary();
             }
         }
