@@ -58,24 +58,24 @@ public class EmployeeServiceTest {
 
         double salary = 0.0;
         double minSalary = Double.MAX_VALUE;
-        int e = 10;
+        EmployeeRequest e = null;
 
         employeeService.addEmployee(employee1);
         employeeService.addEmployee(employee2);
 
 
         Map<Integer, EmployeeRequest> map1 = new HashMap<>();
-        map1.put(0, employee1);
+        map1.put(4, employee1);
         map1.put(1, employee2);
 
         for (Map.Entry<Integer, EmployeeRequest> entry : map1.entrySet()) {
             if (entry.getValue().getSalary() < minSalary) {
                 minSalary = entry.getValue().getSalary();
-                e = entry.getKey();
+                e = entry.getValue();
             }
         }
 
-        assertEquals(employeeService.getMinSalaryEmployee().getId(), e);
+        assertEquals(employeeService.getMinSalaryEmployee().getSalary(), e.getSalary());
 
 
     }
